@@ -75,25 +75,54 @@ namespace WinFormsControlsApp
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            if(sender is CheckBox check)
+            if (sender is CheckBox check)
             {
-                switch(check.CheckState)
+                //MessageBox.Show(check.CheckState.ToString());
+                //if (check.CheckState == CheckState.Unchecked)
+                //{
+                //    check.CheckState = CheckState.Indeterminate;
+                //    return;
+                //}
+
+
+                //if (check.CheckState == CheckState.Checked)
+                //{
+                //    check.CheckState = CheckState.Unchecked;
+                //    return;
+                //}
+
+
+                //if (check.CheckState == CheckState.Indeterminate)
+                //{
+                //    check.CheckState = CheckState.Checked;
+                //    return;
+                //}
+
+                switch (check.CheckState)
                 {
                     case CheckState.Unchecked:
-                        check.Checked = false;
                         check.CheckState = CheckState.Indeterminate;
-                        break;
-                    case CheckState.Checked:
-                        check.Checked = false;
-                        check.CheckState = CheckState.Unchecked;
-                        break;
-                    
+                        return;
+
                     case CheckState.Indeterminate:
-                        check.Checked = true;
                         check.CheckState = CheckState.Checked;
-                        break;
+                        return;
+
+                    case CheckState.Checked:
+                        check.CheckState = CheckState.Unchecked;
+                        return;
                 }
             }
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(sender is RadioButton radioButton)
+            {
+                if(radioButton.Checked)
+                    MessageBox.Show(((RadioButton)sender).Name);
+            }
+            
         }
     }
 }
